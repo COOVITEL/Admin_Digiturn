@@ -4,8 +4,8 @@
 <div class="scores-turns">
     <h1 class="name">{{turn.name}}</h1>
     <h5 class="user-date">Cedula: {{turn.c_number}}&nbsp&nbsp&nbspTelefono: {{turn.phone}}&nbsp&nbsp&nbspCiudad: {{turn.city}}&nbsp&nbsp&nbspFecha: {{turn.date}}</h5>
+    <p>{{turn.state}}</p>
     <form method="POST" autocomplete="off" class="form_scores">
-        
         {% csrf_token %}
         {% for field in scores %}
         <div class="form-group">

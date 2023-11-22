@@ -95,18 +95,20 @@ def DatesDigiTurn(request):
 @login_required(login_url="login")
 def updateTurn(request, id):
     """"""
+    form = Scores()
     response = requests.get(f"http://192.168.1.16:8005/turns/api/v1/turns/{id}/")
     turn = response.json()
     copy = turn
-    
     if request.method == "GET":
+        render(request, "updatescore.html", {"turn": turn, "scores": form})
         copy["state"] = "qualifying"
         requests.put(f"http://192.168.1.16:8005/turns/api/v1/turns/{id}/", data=copy)
     
-    form = Scores()
     if request.method == "POST":
         form = Scores(request.POST)
         if form.is_valid():
+            if copy["state"] == "by_call":
+                return redirect("dates")
             copy["score_time"] = request.POST.get('time')
             copy["score_service"] = request.POST.get('attention')
             copy["score_att"] = request.POST.get('service')
