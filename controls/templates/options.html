@@ -1,0 +1,11 @@
+{% extends 'header.html' %}
+{% load static %}
+
+
+{% block content %}
+    <div class="contain-admin">
+        <a class="links-admin" href="{% url 'dates' %}"><h2>Calificaciones Digiturno</h2></a>
+        <a class="links-admin" href="#"><h2>Estadisticas</h2></a>
+        <a class="links-admin" href="{% url 'download' %}"><h2>Descargar base Digiturno</h2></a>
+    </div>
+{% endblock %}

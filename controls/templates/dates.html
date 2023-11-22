@@ -1,0 +1,63 @@
+{% extends 'header.html' %}
+{% load humanize %}
+
+{% block content %}
+    <div class="content-dates">
+        <h1 class="title">Digi Turno</h1>
+        <form action="" class="digiturn">
+            <div class="filter">
+                <div class="filters">
+                    <label for="cityBogota">Bogotá</label>
+                    <input type="checkbox" id="cityBogota" name="city" value="Bogotá">
+                    <label for="cityTunja">Tunja</label>
+                    <input type="checkbox" id="cityTunja" name="city" value="Tunja">
+                </div>
+                <div class="filters">
+                    <label for="fechaHoy">Hoy</label>
+                    <input type="checkbox" id="fechaHoy" name="fecha" value="1">
+                    <label for="fecha3dias">3 días</label>
+                    <input type="checkbox" id="fecha3dias" name="fecha" value="3">
+                    <label for="fecha7dias">7 días</label>
+                    <input type="checkbox" id="fecha7dias" name="fecha" value="7">
+                </div>
+                <input type="submit" value="Buscar" class="bt-filter">
+            </div>
+        </form>
+
+        <table id="myTable">
+            <tr>
+                <td class="ttb">Nombre</td>
+                <td class="ttb">Cedula</td>
+                <td class="ttb">Telefono</td>
+                <td class="ttb">Fecha</td>
+                <td class="ttb"></td>
+            </tr>
+            {% for date in dates %}
+            {% if date.name|length > 12 %}
+                <tr>
+                    <td class="tb data">{{date.name}}</td>
+                    <td class="tb data">{{date.c_number}}</td>
+                    <td class="tb data">{{date.phone}}</td>
+                    <td class="tb data">{{date.date}}</td>
+                    <td class="tb"><a href="{% url 'updateTurn' date.id%}"><img class="image" src="static/images/lapiz.png"/></a></td>
+                </tr>
+            {% endif %}
+
+            {% endfor %} 
+        </table>
+        <div class="cont-back">
+            <a class="back" href="{% url 'admin' %}">Volver</a>
+        </div>
+        {% if messages %}
+            <script>
+                {% for message in messages %}
+                let message = "{{ message }}";
+                if (message) {
+                    alert(message);
+                }
+            {% endfor %}
+            </script>
+        {% endif %}
+
+
+{% endblock %}

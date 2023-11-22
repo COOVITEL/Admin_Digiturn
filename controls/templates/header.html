@@ -1,0 +1,19 @@
+{% extends "index.html" %}
+
+{% block header %}   
+<header>
+    <nav class="menu">
+        <ul class="menu-links">
+            <li class="link"><a class="links" href="{% url 'admin' %}">Inicio</a></li>
+            <li class="link"><a class="links" href="{% url 'dates' %}">Digiturno</a></li>
+            <li class="link"><a class="links" href="{% url 'user-logout' %}">Cerrar Sesión</a></li>
+        </ul>
+    </nav>
+</header>
+{% endblock header %}
+
+{% block footer %}
+    <footer>
+        
+    </footer>
+{% endblock footer %}
