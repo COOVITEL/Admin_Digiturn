@@ -1,0 +1,22 @@
+{% extends "header.html" %}
+
+{% block content %}
+    <h1 class="title-st">Estadisticas Digiturno</h1>
+    <div class="statistics">
+        <picture class="images">
+            <img class="image-graf" src="{% url 'plot' %}" alt="mi grafico">
+            <h4 class="text-graf">Cantidad de turnos tomados en las diferentes sucursales.</h4>
+        </picture>
+        <picture class="images">
+            <img class="image-graf" src="{% url 'types' %}" alt="mi grafico">
+            <h4 class="text-graf">Tipos de turnos tomados en las sucursales.</h4>
+        </picture>
+        <picture class="images">
+            <img class="image-graf" src="{% url 'qualitify' %}" alt="mi grafico">
+            <h4 class="text-graf">Estados de calificaciones.</h4>
+        </picture>
+        <picture class="images">
+            <img class="image-graf" src="{% url 'qualitify' %}" alt="mi grafico">
+        </picture>
+    </div>
+{% endblock content %}

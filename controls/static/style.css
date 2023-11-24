@@ -35,7 +35,7 @@ main {
 }
 
 .start {
-    background-image: url("images/back2.png");
+    background-image: url("images/fondo1.png");
     background-repeat: no-repeat;
     background-size: cover;
     width: 33%;
@@ -549,4 +549,41 @@ td {
 .update-score:hover {
     background-color: #007eb8;
     transition: all 0.2s;
+}
+
+/* Estadisticas */
+
+.title-st {
+    margin-top: 100px;
+    margin-bottom: 20px;
+    color: #fff;
+    font-weight: 700;
+}
+
+.statistics {
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.images {
+    width: 400px;
+    aspect-ratio: 3/2;
+    flex-grow: 1;
+}
+
+.image-graf {
+    width: 100%;
+    transition: all 0.2s;
+    border-radius: 10px;
+}
+
+.image-graf:hover {
+    transform: scale(1.01);
+    transition: all 0.2s;
+}
+
+.text-graf {
+    color: #fff;
 }

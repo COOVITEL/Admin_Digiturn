@@ -10,6 +10,7 @@ import requests
 import os
 
 
+
 def login(request):
     """"""
     form = LoginForm()
@@ -50,11 +51,22 @@ def Admin(request):
 def downloadDates(request):
     response = requests.get("http://192.168.1.16:8005/turns/api/v1/turns/")
     dates = response.json()
-    
-    df = pd.DataFrame(dates)
-    df.to_excel('controls/static/datos.xlsx', index=False)
 
-    file_path = os.path.join('controls/static/', 'datos.xlsx')
+    df = pd.DataFrame(dates)
+    """
+    output = BytesIO()
+    writer = pd.ExcelWriter(output, engine='openpyxl')
+    df.to_excel(writer, index=False)
+    writer.close()
+    xlsx_data = output.getvalue()
+
+    response = HttpResponse(xlsx_data, content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+    response['Content-Disposition'] = 'attachment; filename=datos.xlsx'
+    return response
+    """
+    df.to_excel('static/images/datos.xlsx', index=False)
+
+    file_path = os.path.join('datos.xlsx')
     if os.path.exists(file_path):
         with open(file_path, 'rb') as fh:
             response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
@@ -62,7 +74,7 @@ def downloadDates(request):
             return response
     else:
         return redirect("admin")
-
+    
 
 @login_required(login_url="login")
 def DatesDigiTurn(request):
@@ -119,3 +131,7 @@ def updateTurn(request, id):
             return redirect("dates")
 
     return render(request, "updatescore.html", {"turn": turn, "scores": form})
+
+def estadisticas(request):
+    return render(request, "estadisticas.html")
+     
